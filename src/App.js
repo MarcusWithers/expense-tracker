@@ -8,7 +8,7 @@ const DUMMY_DATA = [
     amount: 247.99,
   },
   { id: 2, name: "Groceries", amount: 175.99 },
-  { id: 3, name: "Movie Theatre", amount: 34.99 },
+  { id: 3, name: "Movie Theater", amount: 34.99 },
 ];
 // Data needs to be brought up to this layer still.
 
@@ -23,10 +23,17 @@ const App = () => {
     console.log(expenses);
   };
 
+  const handleDelete = (index) => {
+    setExpenses([...expenses.slice(0, index), ...expenses.slice(index + 1)]);
+  };
   return (
     <div className="app">
       <h1>Expenses Tracker</h1>
-      <Expenses expenses={expenses} onAddExpense={onAddExpense} />
+      <Expenses
+        expenses={expenses}
+        onAddExpense={onAddExpense}
+        onDelete={handleDelete}
+      />
     </div>
   );
 };

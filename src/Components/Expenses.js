@@ -28,11 +28,13 @@ const Expenses = (props) => {
           />
         </div>
 
-        {props.expenses.map((expense) => (
+        {props.expenses.map((expense, index) => (
           <ExpenseItem
+            index={index}
             id={expense.id}
             name={expense.name}
             amount={expense.amount}
+            onDelete={props.onDelete}
           />
         ))}
       </div>

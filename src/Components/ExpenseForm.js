@@ -5,34 +5,44 @@ import { Icon, IconButton } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import PersonIcon from "@mui/icons-material/Person";
+import AssignmentIcon from "@mui/icons-material/Assignment";
 import "./ExpenseForm.css";
 
 const ExpenseForm = (props) => {
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
+  const [isValid, setIsValid] = useState(false);
 
   const nameInputHandler = (event) => {
     setName(event.target.value);
+    if (event.target.value.trim().length > 0) {
+      setIsValid(true);
+    }
   };
 
   const amountInputHandler = (event) => {
     setAmount(event.target.value);
+    if (event.target.value.trim().length > 0) {
+      setIsValid(true);
+    }
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
+
     if (name.trim().length === 0 || amount.trim().length === 0) {
+      setIsValid(false);
       return;
     }
     if (parseInt(amount) < 0.01) {
+      setIsValid(false);
       return;
     }
     const expenses = {
       name: name,
       amount: parseFloat(amount),
     };
-
+    setIsValid(true);
     console.log(expenses);
     props.onSubmitHandler(expenses);
     setName("");
@@ -42,6 +52,7 @@ const ExpenseForm = (props) => {
     <div>
       <form className="expense_form" onSubmit={submitHandler}>
         <TextField
+          className={`text-field.${!isValid ? "invalid" : ""}`}
           label="Name"
           value={name}
           variant="outlined"
@@ -50,13 +61,14 @@ const ExpenseForm = (props) => {
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <PersonIcon />
+                <AssignmentIcon />
               </InputAdornment>
             ),
           }}
         />
         <br />
         <TextField
+          className={`text-field ${!isValid ? "invalid" : ""}`}
           label="Amount"
           value={amount}
           variant="outlined"
