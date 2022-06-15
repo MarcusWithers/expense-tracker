@@ -1,0 +1,13 @@
+.expense_item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.expense_item_listing {
+  margin-left: 15px;
+}
+
+.amount {
+  font-size: 12px;
+}
