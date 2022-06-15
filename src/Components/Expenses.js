@@ -18,7 +18,7 @@ const Expenses = (props) => {
         {props.expenses.map((expense) => {
           totalExpenses += expense.amount;
         })}
-        {totalExpenses.toFixed(2)}
+        Total - ${totalExpenses.toFixed(2)}
       </div>
       <div className="expense_form>">
         <div>

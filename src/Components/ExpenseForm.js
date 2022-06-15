@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import "./ExpenseForm.css";
 import { TextField } from "@mui/material";
 import { Icon, IconButton } from "@mui/material";
+import InputAdornment from "@mui/material/InputAdornment";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import PersonIcon from "@mui/icons-material/Person";
 import "./ExpenseForm.css";
 
 const ExpenseForm = (props) => {
@@ -41,17 +44,35 @@ const ExpenseForm = (props) => {
         <TextField
           label="Name"
           value={name}
-          variant="standard"
+          variant="outlined"
           type="text"
           onChange={nameInputHandler}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <PersonIcon />
+              </InputAdornment>
+            ),
+          }}
         />
+        <br />
         <TextField
           label="Amount"
           value={amount}
-          variant="standard"
+          variant="outlined"
           type="number"
           step=".01"
           onChange={amountInputHandler}
+          InputProps={{
+            inputMode: "numeric",
+            pattern: "[0-9]*",
+            step: ".01",
+            startAdornment: (
+              <InputAdornment position="start">
+                <AttachMoneyIcon />
+              </InputAdornment>
+            ),
+          }}
         />
         <IconButton type="submit">
           <AddCircleIcon color="success" />

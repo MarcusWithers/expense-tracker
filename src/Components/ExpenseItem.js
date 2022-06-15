@@ -4,7 +4,7 @@ const ExpenseItem = (props) => {
   return (
     <div className="expense_item">
       <h3 className="expense_item_listing">{props.name}</h3>
-      <p className="expense_item_listing amount">{props.amount}</p>
+      <p className="expense_item_listing amount">${props.amount}</p>
     </div>
   );
 };
