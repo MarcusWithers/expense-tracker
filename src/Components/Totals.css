@@ -5,7 +5,9 @@
   justify-content: space-between;
   align-items: center;
   background-color: #ffe6e6;
+  border-radius: 15px;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  margin-bottom: 15px;
 }
 
 .totals_name {
