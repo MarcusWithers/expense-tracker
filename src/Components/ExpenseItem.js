@@ -11,6 +11,7 @@ const ExpenseItem = (props) => {
         className="button"
         onClick={() => props.onDelete(props.index)}
       >
+        <p className="mb-0"></p>
         <DeleteIcon className="button" />
       </IconButton>
     </div>
