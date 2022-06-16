@@ -1,0 +1,19 @@
+.totals {
+  display: flex;
+  width: 500px;
+  margin: auto;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffe6e6;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.totals_name {
+  font-size: 36px;
+  padding: 20px;
+}
+
+.totals_amount {
+  font-size: 24px;
+  padding: 20px;
+}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ExpenseItem from "./ExpenseItem";
 import ExpenseForm from "./ExpenseForm";
+import Totals from "./Totals";
 import "./Expenses.css";
 
 const Expenses = (props) => {
@@ -13,32 +14,32 @@ const Expenses = (props) => {
     props.onAddExpense(expenses);
   };
   return (
-    <div className="expenses">
-      <div className="expenses_total">
-        {props.expenses.map((expense) => {
-          totalExpenses += expense.amount;
-        })}
-        Total - ${totalExpenses.toFixed(2)}
+    <>
+      <div className="">
+        <Totals expenses={props.expenses} />
       </div>
-      <div className="expense_form>">
-        <div>
-          <ExpenseForm
-            expenses={props.expenses}
-            onSubmitHandler={onSubmitHandler}
-          />
-        </div>
+      <div className="expenses">
+        <div className="expenses_total"></div>
+        <div className="expense_form>">
+          <div>
+            <ExpenseForm
+              expenses={props.expenses}
+              onSubmitHandler={onSubmitHandler}
+            />
+          </div>
 
-        {props.expenses.map((expense, index) => (
-          <ExpenseItem
-            index={index}
-            id={expense.id}
-            name={expense.name}
-            amount={expense.amount}
-            onDelete={props.onDelete}
-          />
-        ))}
+          {props.expenses.map((expense, index) => (
+            <ExpenseItem
+              index={index}
+              id={expense.id}
+              name={expense.name}
+              amount={expense.amount}
+              onDelete={props.onDelete}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
