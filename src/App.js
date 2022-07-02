@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Expenses from "./Components/Expenses";
+import { db } from "./firebase/FirebaseConfig";
+import { collection, getDocs } from "firebase/firestore";
 import "./App.css";
+
 const DUMMY_DATA = [
   {
     id: 1,
@@ -10,11 +13,26 @@ const DUMMY_DATA = [
   { id: 2, name: "Groceries", amount: 175.99 },
   { id: 3, name: "Movie Theater", amount: 34.99 },
 ];
-// Data needs to be brought up to this layer still.
 
 const App = () => {
   const [expenses, setExpenses] = useState(DUMMY_DATA);
+  const [dbexpenses, setDbExpenses] = useState([]);
+  const expensesCollectionRef = collection(db, "expenses");
 
+  useEffect(() => {
+    const getExpenses = async () => {
+      const data = await getDocs(expensesCollectionRef);
+      setDbExpenses(
+        data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }))
+      );
+      console.log(data);
+    };
+
+    getExpenses();
+  }, []);
   const onAddExpense = (expenseData) => {
     setExpenses((prevExpenses) => {
       return [expenseData, ...prevExpenses];
